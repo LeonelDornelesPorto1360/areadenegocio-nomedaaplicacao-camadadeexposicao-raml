@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: areadenegocio-nomedaaplicacao-camadadeexposicao
+description: areadenegocio-nomedaaplicacao-camadadeexposicao
+version: v1
+mediaType: application/json
+
+uses:
+  global-resources: /exchange_modules/e324e3b2-8af2-454c-884d-0af805811a27/global-resources/1.0.3/accelerator-global-resources.raml
+  fragments-areadenegocio: exchange_modules/e324e3b2-8af2-454c-884d-0af805811a27/common-fragment-for-areadenegocio/1.0.6/areadenegocio-nomedaaplicacao-fragment.raml
+
+/customers:
+  description: Base resource for accessing customer information.
+  /{customerId}:
+    description: Manage information for a specific customer.
+    is: [ global-resources.ErrorResponses ]
+    securedBy:  
+    - global-resources.client-enforcement
+    - global-resources.basic-authentication
+    - global-resources.oauth_2_0
+    get:
+      description: Return details for an existing customer.
+      responses:
+        200:
+          body:
+            application/json:
+              type: fragments-areadenegocio.get-customers-by-id
+  post:
+    is: [ global-resources.ErrorResponses ]
+    securedBy:  
+    - global-resources.client-enforcement
+    body:
+      application/json:
+        type: fragments-areadenegocio.post-customers-request
+    responses:
+      200:
+        body:
+          application/json:
+            type: fragments-areadenegocio.post-customers-response
+      
+                
+
