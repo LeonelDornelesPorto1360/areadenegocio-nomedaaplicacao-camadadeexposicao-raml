@@ -6,7 +6,7 @@ mediaType: application/json
 
 uses:
   global-resources-fragments: /exchange_modules/f8f9abd2-10a0-400f-bb5b-60cbd5b8cb29/global-resources-fragments/1.0.0/global-resources-fragments.raml
-  fragments-areadenegocio: exchange_modules/f8f9abd2-10a0-400f-bb5b-60cbd5b8cb29/areadenegocio-nomedaaplicacao-fragment/1.0.0/areadenegocio-nomedaaplicacao-fragment.raml
+  areadenegocio-nomedaaplicacao-fragment: exchange_modules/f8f9abd2-10a0-400f-bb5b-60cbd5b8cb29/areadenegocio-nomedaaplicacao-fragment/1.0.0/areadenegocio-nomedaaplicacao-fragment.raml
 /customers:
   description: Base resource for accessing customer information.
   /{customerId}:
@@ -22,16 +22,16 @@ uses:
         200:
           body:
             application/json:
-              type: fragments-areadenegocio.get-customers-by-id
+              type: areadenegocio-nomedaaplicacao-fragment.get-customers-by-id
   post:
     is: [ global-resources-fragments.ErrorResponses ]
     securedBy:  
     - global-resources-fragments.client-enforcement
     body:
       application/json:
-        type: fragments-areadenegocio.post-customers-request
+        type: areadenegocio-nomedaaplicacao-fragment.post-customers-request
     responses:
       200:
         body:
           application/json:
-            type: fragments-areadenegocio.post-customers-response
+            type: areadenegocio-nomedaaplicacao-fragment.post-customers-response
